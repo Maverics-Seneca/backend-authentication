@@ -34,6 +34,8 @@ docker run --name authentication -d -p 4000:4000 authentication
     "role": "caregiver"
   }
   ```
+  <img width="1097" alt="Screenshot 2025-02-10 at 4 34 03 PM" src="https://github.com/user-attachments/assets/d38d9c6c-ac35-45cd-920d-f13188a1b8ac" />
+
 
 #### **Login**
 - **POST** `http://localhost:4000/api/login`
@@ -51,6 +53,8 @@ docker run --name authentication -d -p 4000:4000 authentication
     "uid": "firebase-user-id"
   }
   ```
+  <img width="1097" alt="Screenshot 2025-02-10 at 4 35 43 PM" src="https://github.com/user-attachments/assets/b7be6885-495c-4f82-9ae0-3299f08ce82a" />
+
 
 ---
 
@@ -77,10 +81,14 @@ docker run --name authentication -d -p 4000:4000 authentication
     "message": "Medication added successfully"
   }
   ```
+  <img width="1097" alt="Screenshot 2025-02-10 at 4 38 44 PM" src="https://github.com/user-attachments/assets/492299b0-c951-4c53-ac5a-1ca48005fabb" />
+
 
 ---
 
 ### **Managing Containers**
+<img width="934" alt="image" src="https://github.com/user-attachments/assets/99ea4f0e-ca2a-40f6-b1fe-08d8fa986e96" />
+
 To stop and remove running containers:
 ```sh
 docker stop authentication test
