@@ -1,0 +1,18 @@
+# Use Node.js LTS version as base image
+FROM node:18
+
+# Set working directory
+WORKDIR /app
+
+# Copy package.json and package-lock.json, then install dependencies
+COPY package.json package-lock.json ./
+RUN npm install
+
+# Copy the required application files
+COPY medication-management.js firebase-service-account.json ./
+
+# Expose the port the service runs on
+EXPOSE 6000
+
+# Start the authentication service
+CMD ["node", "medication-management.js"]
