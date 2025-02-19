@@ -8,11 +8,11 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install
 
-# Copy the required application files
-COPY medication-management.js firebase-service-account.json ./
+# Copy only the required application files
+COPY user-auth.js firebase-service-account.json .env ./
 
 # Expose the port the service runs on
-EXPOSE 6000
+EXPOSE 4000
 
 # Start the authentication service
-CMD ["node", "medication-management.js"]
+CMD ["node", "src/app.js"]
