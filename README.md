@@ -1,12 +1,11 @@
 # MediTrack Backend Services
 
-This repository contains the **User Authentication** and **Medication Management** microservices for MediTrack. Each service runs in a separate container, communicating via Firebase for authentication and database management.
+This repository contains the **User Authentication** microservice for MediTrack. Each service runs in a separate container, communicating via Firebase for authentication and database management.
 
 ## **Services & Ports**
 | Service                  | Port  | Description |
 |--------------------------|-------|-------------|
 | **Authentication Service** | `4000` | Handles user registration and login |
-| **Medication Service**    | `6000` | Manages medication inventory and retrieval |
 
 ## **Building & Running Containers**
 To build and run the services:
@@ -14,10 +13,8 @@ To build and run the services:
 ```sh
 # Build the images
 docker build . -t authentication -f Dockerfile_Authentication
-docker build . -t test -f Dockerfile_MedicationTest
 
 # Start the containers
-docker run --name test -d -p 6000:6000 test
 docker run --name authentication -d -p 4000:4000 authentication
 ```
 
@@ -48,43 +45,37 @@ docker run --name authentication -d -p 4000:4000 authentication
   ```json
   {
     "token": "eyJhbGciOiJIUzI1NiIsInR5cC...",
-    "uid": "firebase-user-id"
+    "userId": "firebase-user-id",
+    "role": "caregiver"
   }
   ```
 
----
-
-### **2. Medication Management**
-#### **Create Medication Entry**
-- **POST** `http://localhost:6000/api/medication`
-- **Headers:**
-  ```
-  Authorization: Bearer eyJhb........
-  Content-Type: application/json
-  ```
-- **Body:**
+#### **Get User Details**
+- **GET** `http://localhost:4000/api/user`
+- **Header:**
   ```json
   {
-    "userId": "firebase-user-id",
-    "name": "Aspirin",
-    "dosage": "100mg",
-    "frequency": "Twice a day"
+    "Authorization": "Bearer <JWT Token>"
   }
   ```
 - **Response:**
   ```json
   {
-    "message": "Medication added successfully"
+    "email": "testuser@example.com",
+    "name": "John Doe",
+    "role": "caregiver",
+    "createdAt": {
+        "_seconds": 1740003882,
+        "_nanoseconds": 963000000
+    }
   }
   ```
-
----
 
 ### **Managing Containers**
 To stop and remove running containers:
 ```sh
-docker stop authentication test
-docker rm authentication test
+docker stop authentication
+docker rm authentication
 ```
 
 
